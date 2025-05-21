@@ -1,0 +1,10 @@
+[Container]
+Image=docker.io/mariadb:10
+AutoUpdate=registry
+Network=template-wp.network
+EnvironmentFile=.env
+Secret=template-wp-dbpass,type=env,target=MARIADB_PASSWORD
+Volume=template-wp-db.volume:/var/lib/mysql:Z
+
+[Install]
+WantedBy=multi-user.target

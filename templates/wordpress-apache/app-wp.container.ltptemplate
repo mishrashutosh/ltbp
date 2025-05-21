@@ -1,0 +1,14 @@
+[Unit]
+Requires=template-wp-db.service
+
+[Container]
+Image=docker.io/wordpress:latest
+AutoUpdate=registry
+Network=template-wp.network
+EnvironmentFile=.env
+PublishPort=$port:80
+Secret=template-wp-dbpass,type=env,target=WORDPRESS_DB_PASSWORD
+Volume=template-wp.volume:/var/www/html:Z
+
+[Install]
+WantedBy=multi-user.target
